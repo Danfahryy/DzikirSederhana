@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Belajar React Day 4</title>
+        <!-- link react -->
+        <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+        <!-- link babel -->
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>   
+        
+        <style>
+            *, body {
+                margin: 0;
+                padding: 0;
+            }
+
+            #root {
+                display: grid;
+                place-items: center;
+                height: 100vh;
+            }
+
+            #buttonKlik {
+                font-size: 30px;
+                background-color: brown;
+                color: white;
+                padding: 10px;
+                border-radius: 10px;
+            }
+
+            #buttonTema {
+                font-size: 20px;
+                background-color: brown;
+                color: white;
+                padding: 10px;
+                border-radius: 10px;
+            }
+
+        </style>
+    </head>
+    
+    <body style="display: grid; justify-content: center; align-items: center; height: 100vh;">
+        <div id="root"></div>
+
+        <script type="text/babel">
+            const container = document.getElementById('root')
+            const root = ReactDOM.createRoot(container)
+
+            function Header({ name }){
+                return (<h1>Tambah Pahala Bro {name ? name : '😁👍'}</h1>)
+            }
+            function Body () {
+                const [nilai, setNilai] = React.useState(0)
+
+                function nilaiButton() {
+                    setNilai(nilai + 1)
+                }
+
+                function bgButton(){
+                    const randomColor = '#' + Math.floor(Math.random()*16777215).toString(16);
+                    document.body.style.backgroundColor = randomColor;
+                }
+
+                return (
+                    <>
+                        <Header />
+                        <h2>Jumlah Dzikir : {nilai}</h2>
+                        <button onClick={nilaiButton} id="buttonKlik">Klik disini!</button>
+                        <button onClick={bgButton} id="buttonTema">Ubah Tema</button>
+                    </>
+                )
+                
+            }
+            root.render(<Body />)
+        </script>
+    </body>
+</html>
